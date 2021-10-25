@@ -3,13 +3,12 @@
 #include <gl/glut.h>
 #include <Windows.h>
 
-void drawCarpet(int x, int y, int width, int iterations)
+void DrawCarpet(int x, int y, int width, int iterations)
 {
     if (iterations <= 0)
     {
         return;
     }
- 
     width /= 3;
 
     glColor3f(255.0f, 255.0f, 255.0f);
@@ -23,7 +22,7 @@ void drawCarpet(int x, int y, int width, int iterations)
             {
                 continue;
             }
-            drawCarpet(x + i * width, y + j * width, width, iterations-1);
+            DrawCarpet(x + i * width, y + j * width, width, iterations-1);
         }
     }
 }
@@ -33,7 +32,7 @@ void RenderScene(void)
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(0.0f, 0.0f, 0.0f);
     glRectf(-121.0f, 121.0f, 121.0f, -121.0f);
-    drawCarpet(-121, -121, 243, 4);
+    DrawCarpet(-95, -95, 190, 4);
 }
 
 
@@ -61,7 +60,7 @@ void ChangeSize(GLsizei horizontal, GLsizei vertical)
     AspectRatio = (GLfloat)horizontal / (GLfloat)vertical;
 
     if (horizontal <= vertical)
-        glOrtho(-200.0, 200.0, -200.0 / AspectRatio, 200.0 / AspectRatio, 1.0, -1.0);
+        glOrtho(-100.0, 100.0, -100.0 / AspectRatio, 100.0 / AspectRatio, 1.0, -1.0);
     else
         glOrtho(-100.0 * AspectRatio, 100.0 * AspectRatio, -100.0, 100.0, 1.0, -1.0);
 
@@ -74,7 +73,7 @@ void ChangeSize(GLsizei horizontal, GLsizei vertical)
 int main(void)
 {
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
-    glutCreateWindow("Drugi program w OpenGL");
+    glutCreateWindow("Dywan Sierpiñskiego");
     glutDisplayFunc(RenderScene);
     glutReshapeFunc(ChangeSize);
     MyInit();
